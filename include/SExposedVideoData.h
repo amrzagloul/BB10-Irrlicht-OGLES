@@ -5,6 +5,7 @@
 #ifndef __S_EXPOSED_VIDEO_DATA_H_INCLUDED__
 #define __S_EXPOSED_VIDEO_DATA_H_INCLUDED__
 
+
 // forward declarations for internal pointers
 struct IDirect3D9;
 struct IDirect3DDevice9;
@@ -92,7 +93,17 @@ struct SExposedVideoData
 			void* View;
 			
 		} OGLESIPhone;
+
+		struct
+		{
+			// EGL handlers
+			void* nativeWindow;
+			unsigned long displayID;
+			
+		} OGLES;
 	};
+
+
 };
 
 } // end namespace video

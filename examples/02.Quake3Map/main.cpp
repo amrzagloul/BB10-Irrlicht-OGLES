@@ -62,8 +62,8 @@ int main()
 		" (f) Burning's Software Renderer\n (g) Software Renderer\n"\
 		" (h) NullDevice\n (otherKey) exit\n\n");
 
-	char i;
-	std::cin >> i;
+	char i ='b';
+	//std::cin >> i;
 
 	switch(i)
 	{
@@ -81,7 +81,7 @@ int main()
 	// create device and exit if creation failed
 
 	IrrlichtDevice *device =
-		createDevice(driverType, core::dimension2d<u32>(640, 480));
+		createDevice(driverType, core::dimension2d<u32>(768, 1280), 32);
 
 	if (device == 0)
 		return 1; // could not create selected driver.
@@ -101,7 +101,7 @@ int main()
 	we are able to read from the files in that archive as if they are
 	directly stored on the disk.
 	*/
-	device->getFileSystem()->addFileArchive("../../media/map-20kdm2.pk3");
+	device->getFileSystem()->addFileArchive("app/native/map-20kdm2.pk3");
 
 	/*
 	Now we can load the mesh by calling

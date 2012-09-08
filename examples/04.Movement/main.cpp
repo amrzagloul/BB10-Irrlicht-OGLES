@@ -71,7 +71,7 @@ different possibilities to move and animate scene nodes.
 int main()
 {
 	// ask user for driver
-	video::E_DRIVER_TYPE driverType=driverChoiceConsole();
+	video::E_DRIVER_TYPE driverType=video::EDT_OGLES1;//driverChoiceConsole();
 	if (driverType==video::EDT_COUNT)
 		return 1;
 
@@ -79,7 +79,7 @@ int main()
 	MyEventReceiver receiver;
 
 	IrrlichtDevice* device = createDevice(driverType,
-			core::dimension2d<u32>(640, 480), 16, false, false, false, &receiver);
+			core::dimension2d<u32>(768, 1280), 32, false, false, false, &receiver);
 
 	if (device == 0)
 		return 1; // could not create selected driver.
@@ -98,7 +98,7 @@ int main()
 	if (node)
 	{
 		node->setPosition(core::vector3df(0,0,30));
-		node->setMaterialTexture(0, driver->getTexture("../../media/wall.bmp"));
+		node->setMaterialTexture(0, driver->getTexture("app/native/wall.bmp"));
 		node->setMaterialFlag(video::EMF_LIGHTING, false);
 	}
 
@@ -115,7 +115,7 @@ int main()
 
 	if (n)
 	{
-		n->setMaterialTexture(0, driver->getTexture("../../media/t351sml.jpg"));
+		n->setMaterialTexture(0, driver->getTexture("app/native/t351sml.jpg"));
 		n->setMaterialFlag(video::EMF_LIGHTING, false);
 		scene::ISceneNodeAnimator* anim =
 			smgr->createFlyCircleAnimator(core::vector3df(0,0,30), 20.0f);
@@ -131,7 +131,7 @@ int main()
 	a b3d model, which uses a 'fly straight' animator to run between to points.
 	*/
 	scene::IAnimatedMeshSceneNode* anms =
-		smgr->addAnimatedMeshSceneNode(smgr->getMesh("../../media/ninja.b3d"));
+		smgr->addAnimatedMeshSceneNode(smgr->getMesh("app/native/ninja.b3d"));
 
 	if (anms)
 	{
@@ -180,7 +180,7 @@ int main()
 	Add a colorful irrlicht logo
 	*/
 	device->getGUIEnvironment()->addImage(
-		driver->getTexture("../../media/irrlichtlogoalpha2.tga"),
+		driver->getTexture("app/native/irrlichtlogoalpha2.tga"),
 		core::position2d<s32>(10,20));
 
 	gui::IGUIStaticText* diagnostics = device->getGUIEnvironment()->addStaticText(

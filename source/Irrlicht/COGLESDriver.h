@@ -25,6 +25,12 @@
 #if defined(_IRR_COMPILE_WITH_IPHONE_DEVICE_)
 #include <OpenGLES/ES1/gl.h>
 #include <OpenGLES/ES1/glext.h>
+
+#elif defined(_IRR_COMPILE_WITH_BB10_DEVICE_)
+#include <EGL/egl.h>
+#include <GLES/gl.h>
+#include <GLES/glext.h>
+
 #else
 #include <GLES/egl.h>
 #include <GLES/gl.h>
@@ -44,7 +50,7 @@ namespace video
 	{
 		friend class COGLES1Texture;
 	public:
-#if defined(_IRR_COMPILE_WITH_X11_DEVICE_) || defined(_IRR_COMPILE_WITH_SDL_DEVICE_) || defined(_IRR_WINDOWS_API_)
+#if defined(_IRR_COMPILE_WITH_X11_DEVICE_) || defined(_IRR_COMPILE_WITH_SDL_DEVICE_) || defined(_IRR_WINDOWS_API_) || defined(_IRR_COMPILE_WITH_BB10_DEVICE_)
 		COGLES1Driver(const SIrrlichtCreationParameters& params,
 				const SExposedVideoData& data,
 				io::IFileSystem* io);
@@ -60,6 +66,7 @@ namespace video
 				const SExposedVideoData& data,
 				io::IFileSystem* io, MIrrIPhoneDevice const & device);
 #endif
+
 
 		//! destructor
 		virtual ~COGLES1Driver();

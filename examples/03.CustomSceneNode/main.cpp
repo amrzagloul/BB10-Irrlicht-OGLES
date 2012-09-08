@@ -168,14 +168,14 @@ the engine, create the scene node and a camera, and look at the result.
 int main()
 {
 	// ask user for driver
-	video::E_DRIVER_TYPE driverType=driverChoiceConsole();
+	video::E_DRIVER_TYPE driverType= video::EDT_OGLES2; //driverChoiceConsole();
 	if (driverType==video::EDT_COUNT)
 		return 1;
 
 	// create device
 
 	IrrlichtDevice *device = createDevice(driverType,
-			core::dimension2d<u32>(640, 480), 16, false);
+			core::dimension2d<u32>(768, 1280), 32, false);
 		
 	if (device == 0)
 		return 1; // could not create selected driver.

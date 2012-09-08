@@ -1,0 +1,18 @@
+LIST=CONTROL
+
+IRRLICHT_ROOT := $(PWD)
+export IRRLICHT_ROOT
+
+##search for Makefile
+MAKEFILE := Makefile.BB10
+
+##First to build lib
+EARLY_DIRS := source
+
+ifndef QRECURSE
+QRECURSE=recurse.mk
+ifdef QCONFIG
+QRDIR=$(dir $(QCONFIG))
+endif
+endif
+include $(QRDIR)$(QRECURSE)

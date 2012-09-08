@@ -159,13 +159,13 @@ example:
 int main()
 {
 	// ask user for driver
-	video::E_DRIVER_TYPE driverType=driverChoiceConsole();
+	video::E_DRIVER_TYPE driverType=video::EDT_OGLES2;//driverChoiceConsole();
 	if (driverType==video::EDT_COUNT)
 		return 1;
 
 	// create device and exit if creation failed
 
-	IrrlichtDevice * device = createDevice(driverType, core::dimension2d<u32>(640, 480));
+	IrrlichtDevice * device = createDevice(driverType, core::dimension2d<u32>(768, 1280), 32);
 
 	if (device == 0)
 		return 1; // could not create selected driver.
@@ -187,7 +187,7 @@ int main()
 	*/
 
 	IGUISkin* skin = env->getSkin();
-	IGUIFont* font = env->getFont("../../media/fonthaettenschweiler.bmp");
+	IGUIFont* font = env->getFont("app/native/fonthaettenschweiler.bmp");
 	if (font)
 		skin->setFont(font);
 
@@ -243,7 +243,7 @@ int main()
 	/*
 	And at last, we create a nice Irrlicht Engine logo in the top left corner. 
 	*/
-	env->addImage(driver->getTexture("../../media/irrlichtlogo2.png"),
+	env->addImage(driver->getTexture("app/native/irrlichtlogo2.png"),
 			position2d<int>(10,10));
 
 

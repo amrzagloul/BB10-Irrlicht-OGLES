@@ -1,0 +1,11 @@
+LIST=CONTROL
+
+MAKEFILE := Makefile.BB10
+
+ifndef QRECURSE
+QRECURSE=recurse.mk
+ifdef QCONFIG
+QRDIR=$(dir $(QCONFIG))
+endif
+endif
+include $(QRDIR)$(QRECURSE)

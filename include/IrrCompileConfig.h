@@ -113,6 +113,21 @@
 #define _IRR_COMPILE_WITH_X11_DEVICE_
 #endif
 
+//BB10 compitable with posix API 
+#if defined(_IRR_LINUX_PLATFORM_) && defined(__BB10__)
+#define _IRR_BB10_PLATFORM_
+#define _IRR_COMPILE_WITH_BB10_DEVICE_
+#undef _IRR_COMPILE_WITH_X11_DEVICE_
+
+//Not supports
+#define NO_IRR_COMPILE_WITH_JOYSTICK_EVENTS_
+#define NO_IRR_COMPILE_WITH_DIRECT3D_8_
+#define NO_IRR_COMPILE_WITH_DIRECT3D_9_
+#define NO_IRR_COMPILE_WITH_OPENGL_
+#define NO_IRR_COMPILE_WITH_X11_
+//use irrlicht internal jpeglib
+#define NO_IRR_USE_NON_SYSTEM_JPEG_LIB_
+#endif
 
 //! Define _IRR_COMPILE_WITH_JOYSTICK_SUPPORT_ if you want joystick events.
 #define _IRR_COMPILE_WITH_JOYSTICK_EVENTS_
@@ -196,7 +211,7 @@ define out. */
 #undef _IRR_COMPILE_WITH_OGLES2_
 #endif
 #ifndef IRR_OGLES2_SHADER_PATH 
-#define IRR_OGLES2_SHADER_PATH "../../media/Shaders/"
+#define IRR_OGLES2_SHADER_PATH "app/native/Shaders/"
 #endif
 
 //! Define _IRR_COMPILE_WITH_SOFTWARE_ to compile the Irrlicht engine with software driver

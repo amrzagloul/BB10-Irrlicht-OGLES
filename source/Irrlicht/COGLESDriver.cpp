@@ -52,6 +52,9 @@ COGLES1Driver::COGLES1Driver(const SIrrlichtCreationParameters& params,
 #elif defined(_IRR_COMPILE_WITH_X11_DEVICE_)
 	EglWindow = (NativeWindowType)ExposedData.OpenGLLinux.X11Window;
 	EglDisplay = eglGetDisplay((NativeDisplayType)ExposedData.OpenGLLinux.X11Display);
+#elif defined(_IRR_COMPILE_WITH_BB10_DEVICE_)
+	EglWindow = (NativeWindowType)ExposedData.OGLES.nativeWindow;
+	EglDisplay = eglGetDisplay((NativeDisplayType)ExposedData.OGLES.displayID);
 #elif defined(_IRR_COMPILE_WITH_IPHONE_DEVICE_)
 	Device = device;
 #endif
@@ -3211,7 +3214,7 @@ namespace video
 // -----------------------------------
 // WINDOWS VERSION
 // -----------------------------------
-#if defined(_IRR_COMPILE_WITH_X11_DEVICE_) || defined(_IRR_COMPILE_WITH_SDL_DEVICE_) || defined(_IRR_COMPILE_WITH_WINDOWS_DEVICE_)
+#if defined(_IRR_COMPILE_WITH_X11_DEVICE_) || defined(_IRR_COMPILE_WITH_SDL_DEVICE_) || defined(_IRR_COMPILE_WITH_WINDOWS_DEVICE_) || defined(_IRR_COMPILE_WITH_BB10_DEVICE_)
 IVideoDriver* createOGLES1Driver(const SIrrlichtCreationParameters& params,
 		video::SExposedVideoData& data, io::IFileSystem* io)
 {
@@ -3253,6 +3256,7 @@ IVideoDriver* createOGLES1Driver(const SIrrlichtCreationParameters& params,
 #endif // _IRR_COMPILE_WITH_OGLES1_
 }
 #endif // _IRR_COMPILE_WITH_IPHONE_DEVICE_
+
 
 } // end namespace
 } // end namespace

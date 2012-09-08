@@ -21,6 +21,11 @@
 #if defined(_IRR_COMPILE_WITH_IPHONE_DEVICE_)
 #include <OpenGLES/ES2/gl.h>
 #include <OpenGLES/ES2/glext.h>
+
+#elif defined(_IRR_COMPILE_WITH_BB10_DEVICE_)
+#include <GLES2/gl2.h>
+#include <GLES2/gl2ext.h>
+
 #else
 #include <EGL/egl.h>
 #include <GLES2/gl2.h>
@@ -68,6 +73,9 @@ namespace video
 #elif defined(_IRR_COMPILE_WITH_X11_DEVICE_)
 		EglWindow = (NativeWindowType)ExposedData.OpenGLLinux.X11Window;
 		EglDisplay = eglGetDisplay((NativeDisplayType)ExposedData.OpenGLLinux.X11Display);
+#elif defined(_IRR_COMPILE_WITH_BB10_DEVICE_)
+		EglWindow = (NativeWindowType)ExposedData.OGLES.nativeWindow;
+		EglDisplay = eglGetDisplay((NativeDisplayType)ExposedData.OGLES.displayID);
 #elif defined(_IRR_COMPILE_WITH_IPHONE_DEVICE_)
 		Device = device;
 #endif
@@ -2907,7 +2915,7 @@ namespace irr
 namespace video
 {
 
-#if !defined(_IRR_COMPILE_WITH_IPHONE_DEVICE_) && (defined(_IRR_COMPILE_WITH_X11_DEVICE_) || defined(_IRR_COMPILE_WITH_SDL_DEVICE_) || defined(_IRR_COMPILE_WITH_WINDOWS_DEVICE_) || defined(_IRR_COMPILE_WITH_CONSOLE_DEVICE_))
+#if !defined(_IRR_COMPILE_WITH_IPHONE_DEVICE_) && (defined(_IRR_COMPILE_WITH_X11_DEVICE_) || defined(_IRR_COMPILE_WITH_SDL_DEVICE_) || defined(_IRR_COMPILE_WITH_WINDOWS_DEVICE_) || defined(_IRR_COMPILE_WITH_CONSOLE_DEVICE_) || defined(_IRR_COMPILE_WITH_BB10_DEVICE_))
 	IVideoDriver* createOGLES2Driver(const SIrrlichtCreationParameters& params,
 			video::SExposedVideoData& data, io::IFileSystem* io)
 	{
@@ -2918,6 +2926,7 @@ namespace video
 #endif // _IRR_COMPILE_WITH_OGLES2_
 	}
 #endif
+
 
 // -----------------------------------
 // MACOSX VERSION
